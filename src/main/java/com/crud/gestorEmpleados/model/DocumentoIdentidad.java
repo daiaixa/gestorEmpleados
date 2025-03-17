@@ -9,10 +9,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "documentoIdentidad")
+@Table(name = "documentoIdentidad",
+uniqueConstraints = @UniqueConstraint(columnNames = {"tipoDocumento", "nroDocumento"})) 
+//Se especifica que sean atributos unicos
 public class DocumentoIdentidad {
 
 	@Id

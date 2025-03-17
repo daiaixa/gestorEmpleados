@@ -1,10 +1,13 @@
 package com.crud.gestorEmpleados.model;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
@@ -35,6 +38,10 @@ public class Empleado {
 	@NotNull
 	@Size(max = 25)
 	private String numeroTel;
+	
+	//Requiero de los datos adicionales de la tabla generada a partir de la relacion entre empleado y vehiculo.
+	@OneToMany(mappedBy = "chofer")
+	private List<EmpleadoManejaVehiculo> vehiculosManejados;
 	
 	
 	//CONSTRUCTOR
@@ -107,6 +114,7 @@ public class Empleado {
 		this.numeroTel = numeroTel;
 	}
 
+	// TODO LOS METODOS PARA AGREGAR Y QUITAR ELEMENTOS DE LAS LISTAS....
 
 
 	//METODOS

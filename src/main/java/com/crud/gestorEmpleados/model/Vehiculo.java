@@ -1,18 +1,25 @@
 package com.crud.gestorEmpleados.model;
 
+import java.util.List;
+
 import com.crud.gestorEmpleados.enums.EstadoVehiculo;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "vehiculos")
+@Table(name = "vehiculos",
+uniqueConstraints = @UniqueConstraint(columnNames = "patente"))
 public class Vehiculo {
 	
 	@Id
@@ -30,6 +37,9 @@ public class Vehiculo {
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	private EstadoVehiculo estado;
+	
+	@OneToMany(mappedBy = "vehiculo")
+	private List<EmpleadoManejaVehiculo> conductores;
 	
 	
 	//CONSTRUCTOR
@@ -83,6 +93,6 @@ public class Vehiculo {
 	}
 	
 	
-	
+	//TODO los metodos que añadan o quite elementos de la lista.
 
 }
